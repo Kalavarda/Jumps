@@ -1,0 +1,10 @@
+﻿<Window x:Class="Kalavarda.Jumps.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Jumps" Height="600" Width="800" Background="Black" WindowState="Maximized">
+    <Grid>
+        <Border x:Name="_gameContainer">
+
+        </Border>
+    </Grid>
+</Window>

@@ -1,0 +1,9 @@
+﻿<UserControl x:Class="Kalavarda.Jumps.Controls.GameControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Canvas x:Name="_canvas">
+        <Border x:Name="_locationContainer">
+
+        </Border>
+    </Canvas>
+</UserControl>
