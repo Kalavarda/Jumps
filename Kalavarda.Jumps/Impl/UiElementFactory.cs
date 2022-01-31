@@ -2,6 +2,7 @@
 using System.Windows;
 using Kalavarda.Jumps.Controls;
 using Kalavarda.Jumps.Models;
+using Kalavarda.Jumps.Models.GameObjects;
 
 namespace Kalavarda.Jumps.Impl
 {

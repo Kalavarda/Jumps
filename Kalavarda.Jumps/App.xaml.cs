@@ -1,6 +1,9 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
+using System.Windows;
 using Kalavarda.Jumps.Impl;
 using Kalavarda.Jumps.Models;
+using Kalavarda.Jumps.Models.GameObjects;
 using Kalavarda.Jumps.Models.Interfaces;
 using Kalavarda.Jumps.Processes;
 using Kalavarda.Primitives.Process;
@@ -29,6 +32,17 @@ namespace Kalavarda.Jumps
 
             Processor = new MultiProcessor(60, CancellationToken.None);
             Processor.Add(new HeroMoveProcess(Game));
+            // TODO: вынести в подписчик Game.LocationChanged
+            foreach (var layer in Game.Location.Layers)
+            foreach (var movingBrick in layer.Objects.OfType<MovingBrick>())
+                Processor.Add(new MovingBrickProcess(movingBrick));
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            Processor.Paused = true; // TODO: Stop() and Dispose()
+
+            base.OnExit(e);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Kalavarda.Jumps.Models;
+using Kalavarda.Jumps.Models.GameObjects;
 using Kalavarda.Jumps.Models.Interfaces;
 using Kalavarda.Primitives.Geometry;
 
@@ -31,47 +32,58 @@ namespace Kalavarda.Jumps.Impl
         {
             var bricks = new List<Brick>();
 
+            bricks.Add(new Brick(new RectBounds(
+                new PointF(size.Width / 2, _game.BlockSize / 2),
+                new SizeF { Width = size.Width, Height = _game.BlockSize })));
+            bricks.Add(new Brick(new RectBounds(
+                new PointF(size.Width / 2, size.Height - _game.BlockSize / 2),
+                new SizeF { Width = size.Width, Height = _game.BlockSize })));
+
+            bricks.Add(new Brick(new RectBounds(
+                new PointF(_game.BlockSize / 2, size.Height / 2),
+                new SizeF { Width = _game.BlockSize, Height = size.Height - 2 * _game.BlockSize })));
+            bricks.Add(new Brick(new RectBounds(
+                new PointF(size.Width - _game.BlockSize / 2, size.Height / 2),
+                new SizeF { Width = _game.BlockSize, Height = size.Height - 2 * _game.BlockSize })));
+
             var wCount = (int)(size.Width / _game.BlockSize);
             var hCount = (int)(size.Height / _game.BlockSize);
 
-            for (var i = 0; i < wCount; i++)
-            {
-                bricks.Add(CreateBrick(i, 0));
-                bricks.Add(CreateBrick(i, hCount - 1));
-            }
-
-            for (var j = 1; j < hCount - 1; j++)
-            {
-                bricks.Add(CreateBrick(0, j));
-                bricks.Add(CreateBrick(wCount - 1, j));
-            }
-
-
-            bricks.Add(CreateBrick(3, hCount - 3));
-            bricks.Add(CreateBrick(4, hCount - 3));
-
-            bricks.Add(CreateBrick(10, hCount - 2));
-            bricks.Add(CreateBrick(11, hCount - 2));
-            bricks.Add(CreateBrick(11, hCount - 3));
-
-            bricks.Add(CreateBrick(12, hCount - 5));
-            bricks.Add(CreateBrick(13, hCount - 5));
-            bricks.Add(CreateBrick(14, hCount - 5));
-            bricks.Add(CreateBrick(15, hCount - 5));
-
-            bricks.Add(CreateBrick(14, hCount - 8));
-            bricks.Add(CreateBrick(15, hCount - 8));
+            bricks.Add(CreateBrick(4, hCount - 2));
+            bricks.Add(CreateBrick(5, hCount - 2));
+            bricks.Add(CreateBrick(5, hCount - 3));
+            
+            bricks.Add(new MovingBrick(
+                new SizeF(3 * _game.BlockSize, _game.BlockSize),
+                new []
+                {
+                    new MovingBrick.MovePhase(new PointF(7.5f * _game.BlockSize, size.Height - 2.5f * _game.BlockSize), 50, TimeSpan.FromSeconds(1)),
+                    new MovingBrick.MovePhase(new PointF(11.5f * _game.BlockSize, size.Height - 2.5f * _game.BlockSize), 100, TimeSpan.FromSeconds(2))
+                }
+            ));
+            
+            bricks.Add(CreateBrick(13, hCount - 2));
+            bricks.Add(CreateBrick(13, hCount - 3));
+            
+            bricks.Add(new MovingBrick(
+                new SizeF(3 * _game.BlockSize, _game.BlockSize),
+                new[]
+                {
+                    new MovingBrick.MovePhase(new PointF(15.5f * _game.BlockSize, size.Height - 2.5f * _game.BlockSize), 75, TimeSpan.FromSeconds(1)),
+                    new MovingBrick.MovePhase(new PointF(15.5f * _game.BlockSize, size.Height - 5.5f * _game.BlockSize), 125, TimeSpan.FromSeconds(2))
+                }
+            ));
 
             return new Location.Layer(bricks);
         }
 
-        private Brick CreateBrick(int i, int j)
+        private Brick CreateBrick(int i, int j, int w = 1, int h = 1)
         {
             var x = i * _game.BlockSize + _game.BlockSize / 2;
             var y = j * _game.BlockSize + _game.BlockSize / 2;
             return new Brick(new RectBounds(
                 new PointF(x, y),
-                new SizeF {Width = _game.BlockSize, Height = _game.BlockSize }));
+                new SizeF { Width = w * _game.BlockSize, Height = h * _game.BlockSize }));
         }
     }
 }

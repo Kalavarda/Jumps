@@ -2,15 +2,15 @@
 using Kalavarda.Primitives.Abstract;
 using Kalavarda.Primitives.Geometry;
 
-namespace Kalavarda.Jumps.Impl
+namespace Kalavarda.Jumps.Models.GameObjects
 {
-    public class Brick: IHasBounds
+    public class Brick : IHasBounds
     {
         public BoundsF Bounds { get; }
 
         public event Action<IHasBounds> PositionChanged;
 
-        public Brick(BoundsF bounds)
+        public Brick(RectBounds bounds)
         {
             Bounds = bounds ?? throw new ArgumentNullException(nameof(bounds));
             Bounds.Position.Changed += Position_Changed;
