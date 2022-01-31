@@ -38,6 +38,7 @@ namespace Kalavarda.Jumps.Processes
             var distance = _movingBrick.Bounds.Position.DistanceTo(_currentPhase.TargetPosition);
             if (MathF.Sqrt(dx*dx + dy*dy) > distance)
             {
+                _movingBrick.Speed.Set(0, 0);
                 GoToNextPhase();
                 return;
             }

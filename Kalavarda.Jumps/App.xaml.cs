@@ -31,7 +31,7 @@ namespace Kalavarda.Jumps
             CollisionDetector = new CollisionDetector(Game);
 
             Processor = new MultiProcessor(60, CancellationToken.None);
-            Processor.Add(new HeroMoveProcess(Game));
+            Processor.Add(new HeroMoveProcess(Game, CollisionDetector));
             // TODO: вынести в подписчик Game.LocationChanged
             foreach (var layer in Game.Location.Layers)
             foreach (var movingBrick in layer.Objects.OfType<MovingBrick>())

@@ -1,6 +1,7 @@
 ﻿using System;
 using Kalavarda.Jumps.Models;
 using Kalavarda.Jumps.Models.Interfaces;
+using Kalavarda.Primitives.Abstract;
 
 namespace Kalavarda.Jumps.Controllers
 {
@@ -11,6 +12,7 @@ namespace Kalavarda.Jumps.Controllers
         private readonly Hero _hero;
         private readonly IInputController _inputController;
         private readonly ICollisionDetector _collisionDetector;
+        private bool _stopAtSupport;
 
         public HeroController(Hero hero, IInputController inputController, ICollisionDetector collisionDetector)
         {
@@ -20,6 +22,17 @@ namespace Kalavarda.Jumps.Controllers
 
             _inputController.Activated += InputController_Activated;
             _inputController.Deactivated += InputController_Deactivated;
+
+            _hero.SupportChanged += Hero_SupportChanged;
+        }
+
+        private void Hero_SupportChanged(Hero hero, IHasBounds oldSupport, IHasBounds newSupport)
+        {
+            if (newSupport != null && _stopAtSupport)
+            {
+                _hero.Speed.Width = 0;
+                _stopAtSupport = false;
+            }
         }
 
         private void InputController_Activated(InputCommand cmd)
@@ -27,19 +40,27 @@ namespace Kalavarda.Jumps.Controllers
             switch (cmd)
             {
                 case InputCommand.Left:
-                    if (_collisionDetector.HasSupport(_hero))
+                    if (_hero.Support != null)
                         _hero.Speed.Width = -_hero.Parameters.Speed.Width;
                     else
-                        _hero.Speed.Width = -_hero.Parameters.Speed.Width * CollisionSpeedRatio;
+                    {
+                        if (_hero.Speed.Width <= 0)
+                            _hero.Speed.Width = MathF.Min(_hero.Speed.Width, -_hero.Parameters.Speed.Width * CollisionSpeedRatio); // костыль
+                    }
+
                     break;
                 case InputCommand.Right:
-                    if (_collisionDetector.HasSupport(_hero))
+                    if (_hero.Support != null)
                         _hero.Speed.Width = _hero.Parameters.Speed.Width;
                     else
-                        _hero.Speed.Width = _hero.Parameters.Speed.Width * CollisionSpeedRatio;
+                    {
+                        if (_hero.Speed.Width >= 0)
+                            _hero.Speed.Width = MathF.Max(_hero.Speed.Width, _hero.Parameters.Speed.Width * CollisionSpeedRatio); // костыль
+                    }
+
                     break;
                 case InputCommand.Jump:
-                    if (_collisionDetector.HasSupport(_hero))
+                    if (_hero.Support != null)
                         _hero.Speed.Height = -_hero.Parameters.JumpSpeed;
                     break;
             }
@@ -51,19 +72,30 @@ namespace Kalavarda.Jumps.Controllers
             {
                 case InputCommand.Left:
                     if (_hero.Speed.Width < 0)
-                        if (_collisionDetector.HasSupport(_hero))
+                    {
+                        if (_hero.Support != null)
                             _hero.Speed.Width = 0;
+                        else
+                            _stopAtSupport = true;
+                    }
+
                     break;
                 case InputCommand.Right:
                     if (_hero.Speed.Width > 0)
-                        if (_collisionDetector.HasSupport(_hero))
+                    {
+                        if (_hero.Support != null)
                             _hero.Speed.Width = 0;
+                        else
+                            _stopAtSupport = true;
+                    }
+
                     break;
             }
         }
 
         public void Dispose()
         {
+            _hero.SupportChanged -= Hero_SupportChanged;
             _inputController.Activated -= InputController_Activated;
             _inputController.Deactivated -= InputController_Deactivated;
         }

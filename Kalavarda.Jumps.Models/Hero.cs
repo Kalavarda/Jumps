@@ -8,9 +8,30 @@ namespace Kalavarda.Jumps.Models
 {
     public class Hero: IHasBounds
     {
+        private IHasBounds _support;
+
         public BoundsF Bounds { get; }
         
         public SizeF Speed { get; } = new SizeF();
+
+        /// <summary>
+        /// Опора
+        /// </summary>
+        public IHasBounds Support
+        {
+            get => _support;
+            set
+            {
+                if (_support == value)
+                    return;
+
+                var oldSupport = _support;
+                _support = value;
+                SupportChanged?.Invoke(this, oldSupport, _support);
+            }
+        }
+
+        public event Action<Hero, IHasBounds, IHasBounds> SupportChanged;
 
         public HeroParameters Parameters = new HeroParameters();
 
