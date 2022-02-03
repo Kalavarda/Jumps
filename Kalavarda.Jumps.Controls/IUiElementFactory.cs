@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Kalavarda.Jumps
+namespace Kalavarda.Jumps.Controls
 {
     public interface IUiElementFactory
     {

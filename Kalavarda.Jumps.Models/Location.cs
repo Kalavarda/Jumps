@@ -7,16 +7,21 @@ namespace Kalavarda.Jumps.Models
 {
     public class Location
     {
+        private List<Layer> _layers = new List<Layer>();
+
         public SizeF Size { get; }
 
         public PointF HeroStartPosition { get; }
 
-        public IReadOnlyCollection<Layer> Layers { get; set; }
+        public IReadOnlyCollection<Layer> Layers => _layers;
+
+        public event Action<Location, Layer> LayerAdded;
 
         public Location(SizeF size, IReadOnlyCollection<Layer> layers, PointF heroStartPosition)
         {
             Size = size ?? throw new ArgumentNullException(nameof(size));
-            Layers = layers ?? throw new ArgumentNullException(nameof(layers));
+            foreach (var layer in layers)
+                Add(layer);
             HeroStartPosition = heroStartPosition ?? throw new ArgumentNullException(nameof(heroStartPosition));
         }
 
@@ -40,6 +45,13 @@ namespace Kalavarda.Jumps.Models
                 _objects.Add(obj);
                 Added?.Invoke(this, obj);
             }
+        }
+
+        public void Add(Layer layer)
+        {
+            if (layer == null) throw new ArgumentNullException(nameof(layer));
+            _layers.Add(layer);
+            LayerAdded?.Invoke(this, layer);
         }
     }
 }

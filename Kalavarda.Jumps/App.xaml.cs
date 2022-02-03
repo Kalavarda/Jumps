@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading;
 using System.Windows;
+using Kalavarda.Jumps.Controls;
 using Kalavarda.Jumps.Impl;
 using Kalavarda.Jumps.Models;
 using Kalavarda.Jumps.Models.GameObjects;
@@ -35,7 +36,7 @@ namespace Kalavarda.Jumps
             // TODO: вынести в подписчик Game.LocationChanged
             foreach (var layer in Game.Location.Layers)
             foreach (var movingBrick in layer.Objects.OfType<MovingBrick>())
-                Processor.Add(new MovingBrickProcess(movingBrick));
+                Processor.Add(new MovingBrickProcess(movingBrick, Game));
         }
 
         protected override void OnExit(ExitEventArgs e)

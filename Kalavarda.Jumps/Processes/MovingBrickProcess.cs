@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Kalavarda.Jumps.Models;
 using Kalavarda.Jumps.Models.GameObjects;
 using Kalavarda.Primitives.Process;
 
@@ -8,14 +9,16 @@ namespace Kalavarda.Jumps.Processes
     public class MovingBrickProcess: IProcess
     {
         private readonly MovingBrick _movingBrick;
+        private readonly Game _game;
         private MovingBrick.MovePhase _currentPhase;
         private DateTime _phaseStartTime;
 
         public event Action<IProcess> Completed;
 
-        public MovingBrickProcess(MovingBrick movingBrick)
+        public MovingBrickProcess(MovingBrick movingBrick, Game game)
         {
             _movingBrick = movingBrick ?? throw new ArgumentNullException(nameof(movingBrick));
+            _game = game ?? throw new ArgumentNullException(nameof(game));
             _currentPhase = _movingBrick.MovePhases[^1];
             _phaseStartTime = DateTime.Now;
         }
@@ -46,6 +49,9 @@ namespace Kalavarda.Jumps.Processes
             _movingBrick.Bounds.Position.Set(
                 _movingBrick.Bounds.Position.X + dx,
                 _movingBrick.Bounds.Position.Y + dy);
+
+            if (_movingBrick.Bounds.DoesIntersect(_game.Hero.Bounds))
+                _game.Hero.Bounds.Position.Offset(-dx, -dy);
         }
 
         public void Stop()

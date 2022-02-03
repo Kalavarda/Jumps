@@ -7,27 +7,21 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Controls\BrickControl.xaml.cs">
+    <Compile Update="Controls\LocationPropertiesControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Controls\GameControl.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Controls\HeroControl.xaml.cs">
+    <Compile Update="Windows\LocationPropertiesWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Controls\BrickControl.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Controls\GameControl.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Controls\HeroControl.xaml">
+    <Page Update="Controls\LocationPropertiesControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Windows\LocationPropertiesWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

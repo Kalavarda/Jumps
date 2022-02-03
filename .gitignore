@@ -3,3 +3,8 @@
 /Kalavarda.Jumps.Models/obj
 /Kalavarda.Jumps.Models/bin
 /.vs/Jumps/v16/*.suo
+/Kalavarda.Jumps.Controls/bin
+/Kalavarda.Jumps.Controls/obj
+/Kalavarda.Jumps.Editor/bin
+/Kalavarda.Jumps.Editor/obj
+/.vs

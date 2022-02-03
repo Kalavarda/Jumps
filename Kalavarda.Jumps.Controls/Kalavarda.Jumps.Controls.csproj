@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Primitives\Kalavarda.Primitives.WPF\Kalavarda.Primitives.WPF.csproj" />
+    <ProjectReference Include="..\..\Primitives\Kalavarda.Primitives\Kalavarda.Primitives.csproj" />
+    <ProjectReference Include="..\Kalavarda.Jumps.Models\Kalavarda.Jumps.Models.csproj" />
+  </ItemGroup>
+
+</Project>

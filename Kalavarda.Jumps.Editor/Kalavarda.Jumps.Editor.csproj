@@ -3,13 +3,12 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\Work\Code\Kalavarda\Primitives\Kalavarda.Primitives.WPF\Kalavarda.Primitives.WPF.csproj" />
     <ProjectReference Include="..\Kalavarda.Jumps.Controls\Kalavarda.Jumps.Controls.csproj" />
-    <ProjectReference Include="..\Kalavarda.Jumps.Models\Kalavarda.Jumps.Models.csproj" />
   </ItemGroup>
 
 </Project>

@@ -3,15 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kalavarda.Jumps", "Kalavarda.Jumps\Kalavarda.Jumps.csproj", "{5F038AFF-F504-4FD0-9163-8683AA17396E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kalavarda.Jumps", "Kalavarda.Jumps\Kalavarda.Jumps.csproj", "{5F038AFF-F504-4FD0-9163-8683AA17396E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kalavarda.Jumps.Models", "Kalavarda.Jumps.Models\Kalavarda.Jumps.Models.csproj", "{89233B36-259A-44F1-91BA-64C54E5980A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kalavarda.Jumps.Models", "Kalavarda.Jumps.Models\Kalavarda.Jumps.Models.csproj", "{89233B36-259A-44F1-91BA-64C54E5980A7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{1A2A438D-C320-44FE-8D60-BC5EF04864AD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kalavarda.Primitives", "..\..\..\..\Work\Code\Kalavarda\Primitives\Kalavarda.Primitives\Kalavarda.Primitives.csproj", "{B05805D9-32B4-47DD-9342-9D3E407DC0B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kalavarda.Primitives", "..\Primitives\Kalavarda.Primitives\Kalavarda.Primitives.csproj", "{B05805D9-32B4-47DD-9342-9D3E407DC0B4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kalavarda.Primitives.WPF", "..\..\..\..\Work\Code\Kalavarda\Primitives\Kalavarda.Primitives.WPF\Kalavarda.Primitives.WPF.csproj", "{A43509C3-A664-4F6A-BC35-44A52CCC58B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kalavarda.Primitives.WPF", "..\Primitives\Kalavarda.Primitives.WPF\Kalavarda.Primitives.WPF.csproj", "{A43509C3-A664-4F6A-BC35-44A52CCC58B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kalavarda.Jumps.Editor", "Kalavarda.Jumps.Editor\Kalavarda.Jumps.Editor.csproj", "{6B932246-FBFD-4DC8-BEEB-D78613BD4644}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kalavarda.Jumps.Controls", "Kalavarda.Jumps.Controls\Kalavarda.Jumps.Controls.csproj", "{ABB802F4-B408-4249-AC05-A0D04A510F0B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +39,14 @@ Global
 		{A43509C3-A664-4F6A-BC35-44A52CCC58B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A43509C3-A664-4F6A-BC35-44A52CCC58B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A43509C3-A664-4F6A-BC35-44A52CCC58B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B932246-FBFD-4DC8-BEEB-D78613BD4644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B932246-FBFD-4DC8-BEEB-D78613BD4644}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B932246-FBFD-4DC8-BEEB-D78613BD4644}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B932246-FBFD-4DC8-BEEB-D78613BD4644}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABB802F4-B408-4249-AC05-A0D04A510F0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABB802F4-B408-4249-AC05-A0D04A510F0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABB802F4-B408-4249-AC05-A0D04A510F0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABB802F4-B408-4249-AC05-A0D04A510F0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
